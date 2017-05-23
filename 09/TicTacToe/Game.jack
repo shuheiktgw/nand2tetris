@@ -1,0 +1,9 @@
+class Game {
+  field Player winner;
+  field Player loser;
+  // field Board board;
+
+  constructor Game new() {
+    return this;
+  }
+}
