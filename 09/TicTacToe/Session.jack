@@ -1,2 +1,21 @@
 class Session {
+  field Player p1;
+  field Player p2;
+
+  constructor Session new(Player player1, Player player2){
+    let p1 = player1;
+    let p2 = player2;
+    return this;
+  }
+
+  method boolean isContinue(){
+    return false;
+  }
+
+  method void printResult(){
+    do p1.printGameCount();
+    do p2.printGameCount();
+
+    return;
+  }
 }

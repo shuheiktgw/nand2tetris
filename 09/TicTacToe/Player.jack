@@ -1,10 +1,14 @@
 class Player {
   field String playerName;
   field Game currentGame;
+  field int winCount;
+  field int loseCount;
 
   constructor Player new(String name, Game game) {
     let playerName = name;
     let currentGame = game;
+    let winCount = 0;
+    let loseCount = 0;
 
     return this;
   }
@@ -20,5 +24,33 @@ class Player {
   method Player setGame(Game game) {
     let currentGame = game;
     return this;
+  }
+
+  method int getWin() {
+    return winCount;
+  }
+
+  method int getLose(){
+    return loseCount;
+  }
+
+  method void incrementWin() {
+    let winCount = winCount + 1;
+    return;
+  }
+
+  method void incrementLose() {
+    let loseCount = loseCount + 1;
+    return;
+  }
+
+  method void printGameCount() {
+    do Output.printString(getName());
+    do Output.printString(": Win ");
+    do Output.printInt(getWin());
+    do Output.printString(" Lose ");
+    do Output.printInt(getLose());
+    do Output.println();
+    return;
   }
 }
