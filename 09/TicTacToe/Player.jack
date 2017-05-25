@@ -1,12 +1,10 @@
 class Player {
   field String playerName;
-  field Game currentGame;
   field int winCount;
   field int loseCount;
 
-  constructor Player new(String name, Game game) {
+  constructor Player new(String name) {
     let playerName = name;
-    let currentGame = game;
     let winCount = 0;
     let loseCount = 0;
 
@@ -15,15 +13,6 @@ class Player {
 
   method String getName() {
     return playerName;
-  }
-
-  method Game getGame() {
-    return currentGame;
-  }
-
-  method Player setGame(Game game) {
-    let currentGame = game;
-    return this;
   }
 
   method int getWin() {

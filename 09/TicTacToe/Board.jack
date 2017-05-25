@@ -1,4 +1,9 @@
-// プレイヤーはセッションに属し,ゲームはプレイヤーに属する. ゲームはボードを持つ. ゲームはルーザーとwinnerと得点とかも持っとく?
-
 class Board {
+  field boolean isFinished;
+  // それぞれのセルが固有値を持っていてそれを加算,減算していけば意外とサクッと行けそう
+
+  constructor Board new() {
+    return this;
+  }
+
 }

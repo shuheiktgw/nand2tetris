@@ -1,10 +1,12 @@
 class Session {
-  field Player p1;
-  field Player p2;
+  field Array games;
+  field int currentGameIdx;
 
-  constructor Session new(Player player1, Player player2){
-    let p1 = player1;
-    let p2 = player2;
+  constructor Session new(Game game){
+    let games = Array.new(100);
+    let games[0] = game;
+    let currentGameIdx = 0;
+
     return this;
   }
 
@@ -12,9 +14,16 @@ class Session {
     return false;
   }
 
-  method void printResult(){
-    do p1.printGameCount();
-    do p2.printGameCount();
+  method Game currentGame() {
+    return games[currentGameIdx];
+  }
+
+  method void setGame(Game game){
+    var int idx;
+    let idx = currentGameIdx + 1;
+
+    let games[idx] = game;
+    let currentGameIdx = idx;
 
     return;
   }

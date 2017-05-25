@@ -1,9 +1,11 @@
 class Game {
-  field Player winner;
-  field Player loser;
+  field Player p1;
+  field Player p2;
   // field Board board;
 
-  constructor Game new() {
+  constructor Game new(Player player1, Player player2) {
+    let p1 = player1;
+    let p2 = player2;
     return this;
   }
 }

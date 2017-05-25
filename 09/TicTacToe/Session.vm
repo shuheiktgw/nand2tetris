@@ -2,9 +2,18 @@ function Session.new 0
 push constant 2
 call Memory.alloc 1
 pop pointer 0
-push argument 0
+push constant 100
+call Array.new 1
 pop this 0
-push argument 1
+push constant 0
+push this 0
+add
+push argument 0
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 0
 pop this 1
 push pointer 0
 return
@@ -13,14 +22,31 @@ push argument 0
 pop pointer 0
 push constant 0
 return
-function Session.printResult 0
+function Session.currentGame 0
 push argument 0
 pop pointer 0
-push this 0
-call Player.printGameCount 1
-pop temp 0
 push this 1
-call Player.printGameCount 1
+push this 0
+add
+pop pointer 1
+push that 0
+return
+function Session.setGame 1
+push argument 0
+pop pointer 0
+push this 1
+push constant 1
+add
+pop local 0
+push local 0
+push this 0
+add
+push argument 1
 pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push local 0
+pop this 1
 push constant 0
 return

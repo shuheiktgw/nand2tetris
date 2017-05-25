@@ -1,15 +1,13 @@
 function Player.new 0
-push constant 4
+push constant 3
 call Memory.alloc 1
 pop pointer 0
 push argument 0
 pop this 0
-push argument 1
+push constant 0
 pop this 1
 push constant 0
 pop this 2
-push constant 0
-pop this 3
 push pointer 0
 return
 function Player.getName 0
@@ -17,44 +15,32 @@ push argument 0
 pop pointer 0
 push this 0
 return
-function Player.getGame 0
+function Player.getWin 0
 push argument 0
 pop pointer 0
 push this 1
 return
-function Player.setGame 0
-push argument 0
-pop pointer 0
-push argument 1
-pop this 1
-push pointer 0
-return
-function Player.getWin 0
+function Player.getLose 0
 push argument 0
 pop pointer 0
 push this 2
 return
-function Player.getLose 0
+function Player.incrementWin 0
 push argument 0
 pop pointer 0
-push this 3
+push this 1
+push constant 1
+add
+pop this 1
+push constant 0
 return
-function Player.incrementWin 0
+function Player.incrementLose 0
 push argument 0
 pop pointer 0
 push this 2
 push constant 1
 add
 pop this 2
-push constant 0
-return
-function Player.incrementLose 0
-push argument 0
-pop pointer 0
-push this 3
-push constant 1
-add
-pop this 3
 push constant 0
 return
 function Player.printGameCount 0
