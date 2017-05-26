@@ -1,9 +1,69 @@
 class Board {
   field boolean isFinished;
   // それぞれのセルが固有値を持っていてそれを加算,減算していけば意外とサクッと行けそう
+  // 1, 2, 4 ...
+  field Array history;
+  field int secondRow;
+  field int thirdRow;
+  field int fourthRow;
+  field int fifthRow;
+  field int seventhRow;
+  field int eigthRow;
+  field int ninthRow;
+  field int tenthRow;
+  field int twelfthRow;
+  field int thirteethRow;
+  field int fourteethRow;
+  field int fifteethRow;
 
   constructor Board new() {
+    var int base;
+    let base = -31711;
+
+    let history = Array.new(9); // 0 -> blank, 1 -> p1, 2 -> p2
+    let secondRow = base;
+    let thirdRow = base;
+    let fourthRow = base;
+    let fifthRow = base;
+    let seventhRow = base;
+    let eigthRow = base;
+    let ninthRow = base;
+    let tenthRow = base;
+    let twelfthRow = base;
+    let thirteethRow = base;
+    let fourteethRow = base;
+    let fifteethRow = base;
     return this;
+  }
+
+  method void draw() {
+  	let memAddress = 16384;
+  	do Memory.poke(memAddress+0, -1);
+  	do Memory.poke(memAddress+32, -31711);
+  	do Memory.poke(memAddress+64, -31711);
+  	do Memory.poke(memAddress+96, -31711);
+  	do Memory.poke(memAddress+128, -31711);
+  	do Memory.poke(memAddress+160, -1);
+  	do Memory.poke(memAddress+192, -31711);
+  	do Memory.poke(memAddress+224, -31711);
+  	do Memory.poke(memAddress+256, -31711);
+  	do Memory.poke(memAddress+288, -31711);
+  	do Memory.poke(memAddress+320, -1);
+  	do Memory.poke(memAddress+352, -31711);
+  	do Memory.poke(memAddress+384, -31711);
+  	do Memory.poke(memAddress+416, -31711);
+  	do Memory.poke(memAddress+448, -31711);
+  	do Memory.poke(memAddress+480, -1);
+  	return;
+  }
+
+  method Array setFirstOne(columnNumber) {
+    array[0] = 12;
+    array[1] = 14
+    array[2] = 12
+    array[3] = 12
+
+    retrun array
   }
 
 }
