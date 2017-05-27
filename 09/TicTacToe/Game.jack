@@ -1,11 +1,37 @@
 class Game {
   field Player p1;
   field Player p2;
-  // field Board board;
+  field Board board;
 
-  constructor Game new(Player player1, Player player2) {
+  constructor Game new(Player player1, Player player2, Board board) {
     let p1 = player1;
     let p2 = player2;
+    let board = board;
     return this;
+  }
+
+  method void play(){
+    var int move1;
+    var int move2;
+
+    while(~(board.getEndStatus = 0)) {
+      board.draw();
+
+      let move1 = Keyboard.readInt("Please type first user's move(1-9): ")
+      while(~(board.playFirst(move1))) {
+        do Output.printString("Invalid move");
+        let move1 = Keyboard.readInt("Please type first user's move(1-9) again: ")
+      }
+
+      if (~(board.getEndStatus = 0)){
+        return;
+      }
+
+      let move2 = Keyboard.readLine("Please type second user's move(1-9): ").intValue();
+      while(~(board.playSecond(move2))) {
+        do Output.printString("Invalid move");
+        let move1 = Keyboard.readLine("Please type second user's move(1-9) again: ").intValue();
+      }
+    }
   }
 }

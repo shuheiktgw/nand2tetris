@@ -1,24 +1,10 @@
 class Main {
   function void main() {
-    var String userName1;
-    var String userName2;
-    var Player p1;
-    var Player p2;
-    var Game game;
     var Session session;
 
-    do Output.printString("Welcome to TicTacToe!");
-    do Output.println();
-    let userName1 = Keyboard.readLine("Please type first user's name: ");
-    let userName2 = Keyboard.readLine("Please type second user's name: ");
+    let session = Session.new();
 
-    let p1 = Player.new(userName1);
-    let p2 = Player.new(userName2);
-    let game  = Game.new(p1, p2);
-
-    let session = Session.new(game);
-
-    while(session.isContinue()) {
+    while(session.getIsContinue()) {
       do Output.printString("Continuing!!!!!!!");
       do Output.println();
     }

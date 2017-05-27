@@ -1,17 +1,61 @@
 class Session {
   field Array games;
+  field Player player1;
+  field Player player2;
   field int currentGameIdx;
+  field boolean isContinue;
 
-  constructor Session new(Game game){
+  constructor Session new(){
+    var String userName1;
+    var String userName2;
+    var Game game;
+    var Board board;
+
+    do Output.printString("Welcome to TicTacToe!");
+    do Output.println();
+
+    let userName1 = Keyboard.readLine("Please type first user's name: ");
+    let userName2 = Keyboard.readLine("Please type second user's name: ");
+
+    let player1 = Player.new(1, userName1);
+    let player2 = Player.new(2, userName2);
+    let board = Board.new()
+    let game  = Game.new(player1, player1, board);
+
     let games = Array.new(100);
     let games[0] = game;
     let currentGameIdx = 0;
 
+    let isContinue = true;
+
     return this;
   }
 
-  method boolean isContinue(){
-    return false;
+  method void start() {
+    var Game cg;
+    var Game newGame;
+    var Board newBoard;
+    var String continue;
+
+    let cg = currentGame();
+    cg.play();
+
+    let continue = Keyboard.readLine("Do you want to start a new game?(y/n): ");
+
+    if (continue == 'y' | continue == 'yes'){
+      let newBoard = Board.new();
+      let newGame = Game.new(player1, player1, newBoard);
+      let currentGameIdx = currentGameIdx + 1;
+      let games[currentGameIdx] = newGame;
+      do start();
+    } else {
+      let isContinue = false;
+      do Output.printString("Ending session!!!!!!!!!!!!");
+    }
+  }
+
+  method boolean getIsContinue(){
+    return isContinue;
   }
 
   method Game currentGame() {

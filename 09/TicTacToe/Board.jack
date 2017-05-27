@@ -60,6 +60,10 @@ class Board {
   	return;
   }
 
+  method int getEndStatus() {
+    return endStatus;
+  }
+
   // return false if the cell is already occupied
   method boolean playFirst(cellNumber) {
     if (~(history[cellNumber] = 0)){

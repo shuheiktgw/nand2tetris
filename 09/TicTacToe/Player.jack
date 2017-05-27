@@ -1,14 +1,20 @@
 class Player {
+  field int playerId;
   field String playerName;
   field int winCount;
   field int loseCount;
 
-  constructor Player new(String name) {
+  constructor Player new(int playerId, String name) {
+    let playerId = playerId;
     let playerName = name;
     let winCount = 0;
     let loseCount = 0;
 
     return this;
+  }
+
+  method int getPlayerId() {
+    return playerId;
   }
 
   method String getName() {
