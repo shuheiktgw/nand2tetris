@@ -15,12 +15,13 @@ class Board {
   field int thirteethRow;
   field int fourteethRow;
   field int fifteethRow;
+  field int endStatus; // 0: not over, 1: player 1 won, 2: player 2 won, 3: even;
 
   constructor Board new() {
     var int base;
     let base = -31711;
 
-    let history = Array.new(9); // 0 -> blank, 1 -> p1, 2 -> p2
+    let history = initializeHistoy(); // 0 -> blank, 1 -> p1, 2 -> p2
     let secondRow = base;
     let thirdRow = base;
     let fourthRow = base;
@@ -33,37 +34,289 @@ class Board {
     let thirteethRow = base;
     let fourteethRow = base;
     let fifteethRow = base;
+
+    let int endStatus 0;
     return this;
   }
 
   method void draw() {
   	let memAddress = 16384;
   	do Memory.poke(memAddress+0, -1);
-  	do Memory.poke(memAddress+32, -31711);
-  	do Memory.poke(memAddress+64, -31711);
-  	do Memory.poke(memAddress+96, -31711);
-  	do Memory.poke(memAddress+128, -31711);
+  	do Memory.poke(memAddress+32, secondRow);
+  	do Memory.poke(memAddress+64, thirdRow);
+  	do Memory.poke(memAddress+96, fourthRow);
+  	do Memory.poke(memAddress+128, fifthRow);
   	do Memory.poke(memAddress+160, -1);
-  	do Memory.poke(memAddress+192, -31711);
-  	do Memory.poke(memAddress+224, -31711);
-  	do Memory.poke(memAddress+256, -31711);
-  	do Memory.poke(memAddress+288, -31711);
+  	do Memory.poke(memAddress+192, seventhRow);
+  	do Memory.poke(memAddress+224, eigthRow);
+  	do Memory.poke(memAddress+256, ninthRow);
+  	do Memory.poke(memAddress+288, tenthRow);
   	do Memory.poke(memAddress+320, -1);
-  	do Memory.poke(memAddress+352, -31711);
-  	do Memory.poke(memAddress+384, -31711);
-  	do Memory.poke(memAddress+416, -31711);
-  	do Memory.poke(memAddress+448, -31711);
+  	do Memory.poke(memAddress+352, twelfthRow);
+  	do Memory.poke(memAddress+384, thirteethRow);
+  	do Memory.poke(memAddress+416, fourteethRow);
+  	do Memory.poke(memAddress+448, fifteethRow);
   	do Memory.poke(memAddress+480, -1);
   	return;
   }
 
-  method Array setFirstOne(columnNumber) {
-    array[0] = 12;
-    array[1] = 14
-    array[2] = 12
-    array[3] = 12
+  // return false if the cell is already occupied
+  method boolean playFirst(cellNumber) {
+    if (~(history[cellNumber] = 0)){
+      return false;
+    }
 
-    retrun array
+    setOne(cellNumber);
+    let history[cellNumber] = 1;
+    let endStatus = judge(1, cellNumber);
+    return true;
   }
 
+  // return false if the cell is already occupied
+  method boolean playSecond(cellNumber) {
+    if (~(history[cellNumber] = 0)){
+      return false;
+    }
+
+    setTwo(cellNumber);
+    let history[cellNumber] = 2;
+    let endStatus = judge(2, cellNumber);
+    return true;
+  }
+
+  method void setOne(cellNumber) {
+    if (cellNumber = 0) {
+      let thirdRow = thirdRow + 12;
+      let fourthRow = fourthRow + 12;
+    }
+
+    if (cellNumber = 3) {
+      let eigthRow = eigthRow + 12;
+      let ninthRow = ninthRow + 12;
+    }
+
+    if (cellNumber = 6) {
+      let thirteethRow = thirteethRow + 12;
+      let fourteethRow = fourteethRow + 12;
+    }
+
+    if (cellNumber = 1) {
+      let thirdRow = thirdRow + 384;
+      let fourthRow = fourthRow + 384;
+    }
+
+    if (cellNumber = 4) {
+      let eigthRow = eigthRow + 384;
+      let ninthRow = ninthRow + 384;
+    }
+
+    if (cellNumber = 7) {
+      let thirteethRow = thirteethRow + 384;
+      let fourteethRow = fourteethRow + 384;
+    }
+
+    if (cellNumber = 2) {
+      let thirdRow = thirdRow + 12288;
+      let fourthRow = fourthRow + 12288;
+    }
+
+    if (cellNumber = 5) {
+      let eigthRow = eigthRow + 12288;
+      let ninthRow = ninthRow + 12288;
+    }
+
+    if (cellNumber = 8) {
+      let thirteethRow = thirteethRow + 12288;
+      let fourteethRow = fourteethRow + 12288;
+    }
+    retrun;
+  }
+
+  method void setTwo(cellNumber) {
+    if (cellNumber = 0) {
+      let secondRow = secondRow + 30;
+      let thirdRow = thirdRow + 18;
+      let fourthRow = fourthRow + 18;
+      let fifthRow = fifthRow + 30;
+    }
+
+    if (cellNumber = 3) {
+      let seventhRow = seventhRow + 30;
+      let eigthRow = eigthRow + 18;
+      let ninthRow = ninthRow + 18;
+      let tenth = tenth + 30;
+    }
+
+    if (cellNumber = 6) {
+      let twelfthRow = twelfthRow + 30;
+      let thirteethRow = thirteethRow + 18;
+      let fourteethRow = fourteethRow + 18;
+      let fifteethRow = fifteethRow + 30;
+    }
+
+    if (cellNumber = 1) {
+      let secondRow = secondRow + 960;
+      let thirdRow = thirdRow + 576;
+      let fourthRow = fourthRow + 576;
+      let fifthRow = fifthRow + 960;
+    }
+
+    if (cellNumber = 4) {
+      let seventhRow = seventhRow + 960;
+      let eigthRow = eigthRow + 576;
+      let ninthRow = ninthRow + 576;
+      let tenth = tenth + 960;
+    }
+
+    if (cellNumber = 7) {
+      let twelfthRow = twelfthRow + 960;
+      let thirteethRow = thirteethRow + 576;
+      let fourteethRow = fourteethRow + 576;
+      let fifteethRow = fifteethRow + 960;
+    }
+
+    if (cellNumber = 2) {
+      let secondRow = secondRow + 30720;
+      let thirdRow = thirdRow + 18432;
+      let fourthRow = fourthRow + 18432;
+      let fifthRow = fifthRow + 30720;
+    }
+
+    if (cellNumber = 5) {
+      let seventhRow = seventhRow + 30720;
+      let eigthRow = eigthRow + 18432;
+      let ninthRow = ninthRow + 18432;
+      let tenth = tenth + 30720;
+    }
+
+    if (cellNumber = 8) {
+      let twelfthRow = twelfthRow + 30720;
+      let thirteethRow = thirteethRow + 18432;
+      let fourteethRow = fourteethRow + 18432;
+      let fifteethRow = fifteethRow + 30720;
+    }
+    retrun;
+  }
+
+  method void judge(int player, int cellNumber) {
+    if (isOver()){
+      let endStatus = 3;
+    }
+
+    if (cellNumber = 0) {
+      if (isTopRowCompleted(player) | isLeftColCompleted(player) | isRightBottomCrossCompleted(player)){
+        let endStatus = player
+      }
+    }
+
+    if (cellNumber = 1) {
+      if (isTopRowCompleted(player) | isMiddleColCompleted(player)){
+        let endStatus = player
+      }
+    }
+
+    if (cellNumber = 2) {
+      if (isTopRowCompleted(player) | isRightColCompleted(player) | isLeftBottomCrossCompleted){
+        let endStatus = player
+      }
+    }
+
+    if (cellNumber = 3) {
+      if (isMiddleRowCompleted(player) | isLeftColCompleted(player)){
+        let endStatus = player
+      }
+    }
+
+    if (cellNumber = 4) {
+      if (isMiddleRowCompleted(player) | isMiddleColCompleted(player)){
+        let endStatus = player
+      }
+    }
+
+    if (cellNumber = 5) {
+      if (isMiddleRowCompleted(player) | isRightColCompleted(player)){
+        let endStatus = player
+      }
+    }
+
+    if (cellNumber = 6) {
+      if (isBottomRowCompleted(player) | isLeftColCompleted(player) | isLeftBottomCrossCompleted(player)){
+        let endStatus = player
+      }
+    }
+
+    if (cellNumber = 7) {
+      if (isBottomRowCompleted(player) | isMiddleColCompleted(player)){
+        let endStatus = player
+      }
+    }
+
+    if (cellNumber = 8) {
+      if (isBottomRowCompleted(player) | isRightColCompleted(player) | isRightBottomCrossCompleted(player)){
+        let endStatus = player
+      }
+    }
+  }
+
+  method boolean isOver() {
+    var int i;
+    let i = 0;
+
+    while(i < 9) {
+      if (history[i] = 0){
+        return false;
+      }
+
+      let i = i + 1;
+    }
+
+    return true;
+  }
+
+  method boolean isTopRowCompleted(int player) {
+    (history[0] = player & history[1] = player & history[2] = player)
+  }
+
+  method boolean isMiddleRowCompleted(int player) {
+    (history[3] = player & history[4] = player & history[5] = player)
+  }
+
+  method boolean isBottomRowCompleted(int player) {
+    (history[6] = player & history[7] = player & history[8] = player)
+  }
+
+  method boolean isLeftColCompleted(int player) {
+    (history[0] = player & history[3] = player & history[6] = player)
+  }
+
+  method boolean isMiddleColCompleted(int player) {
+    (history[1] = player & history[4] = player & history[7] = player)
+  }
+
+  method boolean isRightColCompleted(int player) {
+    (history[2] = player & history[5] = player & history[8] = player)
+  }
+
+  method boolean isRightBottomCrossCompleted(int player) {
+    (history[0] = player & history[4] = player & history[8] = player)
+  }
+
+  method boolean isLeftBottomCrossCompleted(int player) {
+    (history[2] = player & history[4] = player & history[6] = player)
+  }
+
+  method Array initializeHistoy() {
+    var Array arr;
+    var int i;
+
+    let arr = Array.new(9);
+    let i = 0;
+
+    while(i < 9) {
+      let arr[i] = 0;
+      let i = i + 1;
+    }
+
+    return arr;
+  }
 }
