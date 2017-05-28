@@ -578,12 +578,15 @@ function Board.judge 0
 push argument 0
 pop pointer 0
 push pointer 0
+call Board.printHistory 1
+pop temp 0
+push pointer 0
 call Board.isOver 1
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
 push constant 3
-pop this 14
+return
 label IF_FALSE0
 push argument 2
 push constant 0
@@ -606,7 +609,7 @@ if-goto IF_TRUE2
 goto IF_FALSE2
 label IF_TRUE2
 push argument 1
-pop this 14
+return
 label IF_FALSE2
 label IF_FALSE1
 push argument 2
@@ -626,7 +629,7 @@ if-goto IF_TRUE4
 goto IF_FALSE4
 label IF_TRUE4
 push argument 1
-pop this 14
+return
 label IF_FALSE4
 label IF_FALSE3
 push argument 2
@@ -650,7 +653,7 @@ if-goto IF_TRUE6
 goto IF_FALSE6
 label IF_TRUE6
 push argument 1
-pop this 14
+return
 label IF_FALSE6
 label IF_FALSE5
 push argument 2
@@ -670,7 +673,7 @@ if-goto IF_TRUE8
 goto IF_FALSE8
 label IF_TRUE8
 push argument 1
-pop this 14
+return
 label IF_FALSE8
 label IF_FALSE7
 push argument 2
@@ -690,7 +693,7 @@ if-goto IF_TRUE10
 goto IF_FALSE10
 label IF_TRUE10
 push argument 1
-pop this 14
+return
 label IF_FALSE10
 label IF_FALSE9
 push argument 2
@@ -710,7 +713,7 @@ if-goto IF_TRUE12
 goto IF_FALSE12
 label IF_TRUE12
 push argument 1
-pop this 14
+return
 label IF_FALSE12
 label IF_FALSE11
 push argument 2
@@ -734,7 +737,7 @@ if-goto IF_TRUE14
 goto IF_FALSE14
 label IF_TRUE14
 push argument 1
-pop this 14
+return
 label IF_FALSE14
 label IF_FALSE13
 push argument 2
@@ -754,7 +757,7 @@ if-goto IF_TRUE16
 goto IF_FALSE16
 label IF_TRUE16
 push argument 1
-pop this 14
+return
 label IF_FALSE16
 label IF_FALSE15
 push argument 2
@@ -778,7 +781,7 @@ if-goto IF_TRUE18
 goto IF_FALSE18
 label IF_TRUE18
 push argument 1
-pop this 14
+return
 label IF_FALSE18
 label IF_FALSE17
 push constant 0
@@ -842,6 +845,14 @@ push that 0
 and
 push argument 1
 eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+not
+return
+label IF_FALSE0
+push constant 0
 return
 function Board.isMiddleRowCompleted 0
 push argument 0
@@ -869,6 +880,14 @@ push that 0
 and
 push argument 1
 eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+not
+return
+label IF_FALSE0
+push constant 0
 return
 function Board.isBottomRowCompleted 0
 push argument 0
@@ -896,6 +915,14 @@ push that 0
 and
 push argument 1
 eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+not
+return
+label IF_FALSE0
+push constant 0
 return
 function Board.isLeftColCompleted 0
 push argument 0
@@ -923,6 +950,14 @@ push that 0
 and
 push argument 1
 eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+not
+return
+label IF_FALSE0
+push constant 0
 return
 function Board.isMiddleColCompleted 0
 push argument 0
@@ -950,6 +985,14 @@ push that 0
 and
 push argument 1
 eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+not
+return
+label IF_FALSE0
+push constant 0
 return
 function Board.isRightColCompleted 0
 push argument 0
@@ -977,6 +1020,14 @@ push that 0
 and
 push argument 1
 eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+not
+return
+label IF_FALSE0
+push constant 0
 return
 function Board.isRightBottomCrossCompleted 0
 push argument 0
@@ -1004,6 +1055,14 @@ push that 0
 and
 push argument 1
 eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+not
+return
+label IF_FALSE0
+push constant 0
 return
 function Board.isLeftBottomCrossCompleted 0
 push argument 0
@@ -1031,6 +1090,14 @@ push that 0
 and
 push argument 1
 eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+not
+return
+label IF_FALSE0
+push constant 0
 return
 function Board.initializeHistoy 2
 push argument 0
@@ -1061,4 +1128,30 @@ pop local 1
 goto WHILE_EXP0
 label WHILE_END0
 push local 0
+return
+function Board.printHistory 1
+push argument 0
+pop pointer 0
+push constant 0
+pop local 0
+label WHILE_EXP0
+push local 0
+push constant 9
+lt
+not
+if-goto WHILE_END0
+push local 0
+push this 1
+add
+pop pointer 1
+push that 0
+call Output.printInt 1
+pop temp 0
+push local 0
+push constant 1
+add
+pop local 0
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
 return

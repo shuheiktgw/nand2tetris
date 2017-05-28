@@ -15,8 +15,7 @@ class Game {
     var int move2;
 
     do board.draw();
-    do Output.printString("HERE!!!!!!!!!!!!!!!");
-
+    
     while(board.getEndStatus() = 0) {
       do board.draw();
 

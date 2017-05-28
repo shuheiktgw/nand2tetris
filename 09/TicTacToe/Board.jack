@@ -195,66 +195,66 @@ class Board {
     return;
   }
 
-  method void judge(int player, int cellNumber) {
+  method int judge(int player, int cellNumber) {
     if (isOver()){
-      let endStatus = 3;
+      return 3;
     }
 
     if (cellNumber = 0) {
       if (isTopRowCompleted(player) | isLeftColCompleted(player) | isRightBottomCrossCompleted(player)){
-        let endStatus = player;
+        return player;
       }
     }
 
     if (cellNumber = 1) {
       if (isTopRowCompleted(player) | isMiddleColCompleted(player)){
-        let endStatus = player;
+        return player;
       }
     }
 
     if (cellNumber = 2) {
       if (isTopRowCompleted(player) | isRightColCompleted(player) | isLeftBottomCrossCompleted(player)){
-        let endStatus = player;
+        return player;
       }
     }
 
     if (cellNumber = 3) {
       if (isMiddleRowCompleted(player) | isLeftColCompleted(player)){
-        let endStatus = player;
+        return player;
       }
     }
 
     if (cellNumber = 4) {
       if (isMiddleRowCompleted(player) | isMiddleColCompleted(player)){
-        let endStatus = player;
+        return player;
       }
     }
 
     if (cellNumber = 5) {
       if (isMiddleRowCompleted(player) | isRightColCompleted(player)){
-        let endStatus = player;
+        return player;
       }
     }
 
     if (cellNumber = 6) {
       if (isBottomRowCompleted(player) | isLeftColCompleted(player) | isLeftBottomCrossCompleted(player)){
-        let endStatus = player;
+        return player;
       }
     }
 
     if (cellNumber = 7) {
       if (isBottomRowCompleted(player) | isMiddleColCompleted(player)){
-        let endStatus = player;
+        return player;
       }
     }
 
     if (cellNumber = 8) {
       if (isBottomRowCompleted(player) | isRightColCompleted(player) | isRightBottomCrossCompleted(player)){
-        let endStatus = player;
+        return player;
       }
     }
 
-    return;
+    return 0;
   }
 
   method boolean isOver() {
@@ -273,35 +273,67 @@ class Board {
   }
 
   method boolean isTopRowCompleted(int player) {
-    return (history[0] = player & history[1] = player & history[2] = player);
+    if(history[0] = player & history[1] = player & history[2] = player) {
+      return true;
+    }
+
+    return false;
   }
 
   method boolean isMiddleRowCompleted(int player) {
-    return (history[3] = player & history[4] = player & history[5] = player);
+    if(history[3] = player & history[4] = player & history[5] = player) {
+      return true;
+    }
+
+    return false;
   }
 
   method boolean isBottomRowCompleted(int player) {
-    return (history[6] = player & history[7] = player & history[8] = player);
+    if(history[6] = player & history[7] = player & history[8] = player){
+      return true;
+    }
+
+    return false;
   }
 
   method boolean isLeftColCompleted(int player) {
-    return (history[0] = player & history[3] = player & history[6] = player);
+    if(history[0] = player & history[3] = player & history[6] = player){
+      return true;
+    }
+
+    return false;
   }
 
   method boolean isMiddleColCompleted(int player) {
-    return (history[1] = player & history[4] = player & history[7] = player);
+    if(history[1] = player & history[4] = player & history[7] = player){
+      return true;
+    }
+
+    return false;
   }
 
   method boolean isRightColCompleted(int player) {
-    return (history[2] = player & history[5] = player & history[8] = player);
+    if(history[2] = player & history[5] = player & history[8] = player){
+      return true;
+    }
+
+    return false;
   }
 
   method boolean isRightBottomCrossCompleted(int player) {
-    return (history[0] = player & history[4] = player & history[8] = player);
+    if(history[0] = player & history[4] = player & history[8] = player){
+      return true;
+    }
+
+    return false;
   }
 
   method boolean isLeftBottomCrossCompleted(int player) {
-    return (history[2] = player & history[4] = player & history[6] = player);
+    if(history[2] = player & history[4] = player & history[6] = player){
+      return true;
+    }
+
+    return false;
   }
 
   method Array initializeHistoy() {
