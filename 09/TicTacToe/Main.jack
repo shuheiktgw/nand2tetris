@@ -5,8 +5,7 @@ class Main {
     let session = Session.new();
 
     while(session.getIsContinue()) {
-      do Output.printString("Continuing!!!!!!!");
-      do Output.println();
+      do session.start();
     }
 
     do Output.printString("Ending!!!!!!!");

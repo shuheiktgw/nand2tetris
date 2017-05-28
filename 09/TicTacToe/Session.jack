@@ -1,15 +1,14 @@
 class Session {
-  field Array games;
   field Player player1;
   field Player player2;
-  field int currentGameIdx;
+  field Game currentGame;
+  field int gameIdx;
+  field Array prevGames;
   field boolean isContinue;
 
   constructor Session new(){
     var String userName1;
     var String userName2;
-    var Game game;
-    var Board board;
 
     do Output.printString("Welcome to TicTacToe!");
     do Output.println();
@@ -19,56 +18,42 @@ class Session {
 
     let player1 = Player.new(1, userName1);
     let player2 = Player.new(2, userName2);
-    let board = Board.new()
-    let game  = Game.new(player1, player1, board);
+    let currentGame  = Game.new(player1, player2, Board.new());
 
-    let games = Array.new(100);
-    let games[0] = game;
-    let currentGameIdx = 0;
-
+    let prevGames = Array.new(10);
+    let gameIdx = 0;
+    let prevGames[gameIdx] = currentGame;
     let isContinue = true;
 
     return this;
   }
 
   method void start() {
-    var Game cg;
-    var Game newGame;
     var Board newBoard;
     var String continue;
 
-    let cg = currentGame();
-    cg.play();
+    do currentGame.play();
 
     let continue = Keyboard.readLine("Do you want to start a new game?(y/n): ");
 
-    if (continue == 'y' | continue == 'yes'){
+    if (continue = "y"){
+      let gameIdx = gameIdx + 1;
+      // This might not work since currentGame will reffer to the new game but we'll see.
+      let prevGames[gameIdx] = currentGame;
+
       let newBoard = Board.new();
-      let newGame = Game.new(player1, player1, newBoard);
-      let currentGameIdx = currentGameIdx + 1;
-      let games[currentGameIdx] = newGame;
+      let currentGame = Game.new(player1, player1, newBoard);
       do start();
     } else {
       let isContinue = false;
       do Output.printString("Ending session!!!!!!!!!!!!");
+      do Output.println();
     }
+
+    return;
   }
 
   method boolean getIsContinue(){
     return isContinue;
-  }
-
-  method Game currentGame() {
-    return games[currentGameIdx];
-  }
-
-  method void setGame(Game game){
-    var int idx;
-    let idx = currentGameIdx + 1;
-
-    let games[idx] = game;
-    let currentGameIdx = idx;
-
-    return;
   }
 }

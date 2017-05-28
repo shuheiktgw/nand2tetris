@@ -1,0 +1,1064 @@
+function Board.new 1
+push constant 15
+call Memory.alloc 1
+pop pointer 0
+push constant 31711
+neg
+pop local 0
+push pointer 0
+call Board.initializeHistoy 1
+pop this 1
+push local 0
+pop this 2
+push local 0
+pop this 3
+push local 0
+pop this 4
+push local 0
+pop this 5
+push local 0
+pop this 6
+push local 0
+pop this 7
+push local 0
+pop this 8
+push local 0
+pop this 9
+push local 0
+pop this 10
+push local 0
+pop this 11
+push local 0
+pop this 12
+push local 0
+pop this 13
+push constant 0
+pop this 14
+push pointer 0
+return
+function Board.draw 1
+push argument 0
+pop pointer 0
+push constant 16384
+pop local 0
+push local 0
+push constant 0
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push this 2
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push this 3
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push this 4
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push this 5
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push this 6
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push this 7
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push this 8
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push this 9
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push this 10
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push this 11
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push this 12
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push this 13
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Board.getEndStatus 0
+push argument 0
+pop pointer 0
+push this 14
+return
+function Board.playFirst 0
+push argument 0
+pop pointer 0
+push argument 1
+push this 1
+add
+pop pointer 1
+push that 0
+push constant 0
+eq
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+return
+label IF_FALSE0
+push pointer 0
+push argument 1
+call Board.setOne 2
+pop temp 0
+push argument 1
+push this 1
+add
+push constant 1
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push pointer 0
+push constant 1
+push argument 1
+call Board.judge 3
+pop this 14
+push constant 0
+not
+return
+function Board.playSecond 0
+push argument 0
+pop pointer 0
+push argument 1
+push this 1
+add
+pop pointer 1
+push that 0
+push constant 0
+eq
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+return
+label IF_FALSE0
+push pointer 0
+push argument 1
+call Board.setTwo 2
+pop temp 0
+push argument 1
+push this 1
+add
+push constant 2
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push pointer 0
+push constant 2
+push argument 1
+call Board.judge 3
+pop this 14
+push constant 0
+not
+return
+function Board.setOne 0
+push argument 0
+pop pointer 0
+push argument 1
+push constant 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 3
+push constant 12
+add
+pop this 3
+push this 4
+push constant 12
+add
+pop this 4
+label IF_FALSE0
+push argument 1
+push constant 3
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push this 7
+push constant 12
+add
+pop this 7
+push this 8
+push constant 12
+add
+pop this 8
+label IF_FALSE1
+push argument 1
+push constant 6
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push this 11
+push constant 12
+add
+pop this 11
+push this 12
+push constant 12
+add
+pop this 12
+label IF_FALSE2
+push argument 1
+push constant 1
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push this 3
+push constant 384
+add
+pop this 3
+push this 4
+push constant 384
+add
+pop this 4
+label IF_FALSE3
+push argument 1
+push constant 4
+eq
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push this 7
+push constant 384
+add
+pop this 7
+push this 8
+push constant 384
+add
+pop this 8
+label IF_FALSE4
+push argument 1
+push constant 7
+eq
+if-goto IF_TRUE5
+goto IF_FALSE5
+label IF_TRUE5
+push this 11
+push constant 384
+add
+pop this 11
+push this 12
+push constant 384
+add
+pop this 12
+label IF_FALSE5
+push argument 1
+push constant 2
+eq
+if-goto IF_TRUE6
+goto IF_FALSE6
+label IF_TRUE6
+push this 3
+push constant 12288
+add
+pop this 3
+push this 4
+push constant 12288
+add
+pop this 4
+label IF_FALSE6
+push argument 1
+push constant 5
+eq
+if-goto IF_TRUE7
+goto IF_FALSE7
+label IF_TRUE7
+push this 7
+push constant 12288
+add
+pop this 7
+push this 8
+push constant 12288
+add
+pop this 8
+label IF_FALSE7
+push argument 1
+push constant 8
+eq
+if-goto IF_TRUE8
+goto IF_FALSE8
+label IF_TRUE8
+push this 11
+push constant 12288
+add
+pop this 11
+push this 12
+push constant 12288
+add
+pop this 12
+label IF_FALSE8
+push constant 0
+return
+function Board.setTwo 0
+push argument 0
+pop pointer 0
+push argument 1
+push constant 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 2
+push constant 30
+add
+pop this 2
+push this 3
+push constant 18
+add
+pop this 3
+push this 4
+push constant 18
+add
+pop this 4
+push this 5
+push constant 30
+add
+pop this 5
+label IF_FALSE0
+push argument 1
+push constant 3
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push this 6
+push constant 30
+add
+pop this 6
+push this 7
+push constant 18
+add
+pop this 7
+push this 8
+push constant 18
+add
+pop this 8
+push this 9
+push constant 30
+add
+pop this 9
+label IF_FALSE1
+push argument 1
+push constant 6
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push this 10
+push constant 30
+add
+pop this 10
+push this 11
+push constant 18
+add
+pop this 11
+push this 12
+push constant 18
+add
+pop this 12
+push this 13
+push constant 30
+add
+pop this 13
+label IF_FALSE2
+push argument 1
+push constant 1
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push this 2
+push constant 960
+add
+pop this 2
+push this 3
+push constant 576
+add
+pop this 3
+push this 4
+push constant 576
+add
+pop this 4
+push this 5
+push constant 960
+add
+pop this 5
+label IF_FALSE3
+push argument 1
+push constant 4
+eq
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push this 6
+push constant 960
+add
+pop this 6
+push this 7
+push constant 576
+add
+pop this 7
+push this 8
+push constant 576
+add
+pop this 8
+push this 9
+push constant 960
+add
+pop this 9
+label IF_FALSE4
+push argument 1
+push constant 7
+eq
+if-goto IF_TRUE5
+goto IF_FALSE5
+label IF_TRUE5
+push this 10
+push constant 960
+add
+pop this 10
+push this 11
+push constant 576
+add
+pop this 11
+push this 12
+push constant 576
+add
+pop this 12
+push this 13
+push constant 960
+add
+pop this 13
+label IF_FALSE5
+push argument 1
+push constant 2
+eq
+if-goto IF_TRUE6
+goto IF_FALSE6
+label IF_TRUE6
+push this 2
+push constant 30720
+add
+pop this 2
+push this 3
+push constant 18432
+add
+pop this 3
+push this 4
+push constant 18432
+add
+pop this 4
+push this 5
+push constant 30720
+add
+pop this 5
+label IF_FALSE6
+push argument 1
+push constant 5
+eq
+if-goto IF_TRUE7
+goto IF_FALSE7
+label IF_TRUE7
+push this 6
+push constant 30720
+add
+pop this 6
+push this 7
+push constant 18432
+add
+pop this 7
+push this 8
+push constant 18432
+add
+pop this 8
+push this 9
+push constant 30720
+add
+pop this 9
+label IF_FALSE7
+push argument 1
+push constant 8
+eq
+if-goto IF_TRUE8
+goto IF_FALSE8
+label IF_TRUE8
+push this 10
+push constant 30720
+add
+pop this 10
+push this 11
+push constant 18432
+add
+pop this 11
+push this 12
+push constant 18432
+add
+pop this 12
+push this 13
+push constant 30720
+add
+pop this 13
+label IF_FALSE8
+push constant 0
+return
+function Board.judge 0
+push argument 0
+pop pointer 0
+push pointer 0
+call Board.isOver 1
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 3
+pop this 14
+label IF_FALSE0
+push argument 2
+push constant 0
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push pointer 0
+push argument 1
+call Board.isTopRowCompleted 2
+push pointer 0
+push argument 1
+call Board.isLeftColCompleted 2
+or
+push pointer 0
+push argument 1
+call Board.isRightBottomCrossCompleted 2
+or
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push argument 1
+pop this 14
+label IF_FALSE2
+label IF_FALSE1
+push argument 2
+push constant 1
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push pointer 0
+push argument 1
+call Board.isTopRowCompleted 2
+push pointer 0
+push argument 1
+call Board.isMiddleColCompleted 2
+or
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push argument 1
+pop this 14
+label IF_FALSE4
+label IF_FALSE3
+push argument 2
+push constant 2
+eq
+if-goto IF_TRUE5
+goto IF_FALSE5
+label IF_TRUE5
+push pointer 0
+push argument 1
+call Board.isTopRowCompleted 2
+push pointer 0
+push argument 1
+call Board.isRightColCompleted 2
+or
+push pointer 0
+push argument 1
+call Board.isLeftBottomCrossCompleted 2
+or
+if-goto IF_TRUE6
+goto IF_FALSE6
+label IF_TRUE6
+push argument 1
+pop this 14
+label IF_FALSE6
+label IF_FALSE5
+push argument 2
+push constant 3
+eq
+if-goto IF_TRUE7
+goto IF_FALSE7
+label IF_TRUE7
+push pointer 0
+push argument 1
+call Board.isMiddleRowCompleted 2
+push pointer 0
+push argument 1
+call Board.isLeftColCompleted 2
+or
+if-goto IF_TRUE8
+goto IF_FALSE8
+label IF_TRUE8
+push argument 1
+pop this 14
+label IF_FALSE8
+label IF_FALSE7
+push argument 2
+push constant 4
+eq
+if-goto IF_TRUE9
+goto IF_FALSE9
+label IF_TRUE9
+push pointer 0
+push argument 1
+call Board.isMiddleRowCompleted 2
+push pointer 0
+push argument 1
+call Board.isMiddleColCompleted 2
+or
+if-goto IF_TRUE10
+goto IF_FALSE10
+label IF_TRUE10
+push argument 1
+pop this 14
+label IF_FALSE10
+label IF_FALSE9
+push argument 2
+push constant 5
+eq
+if-goto IF_TRUE11
+goto IF_FALSE11
+label IF_TRUE11
+push pointer 0
+push argument 1
+call Board.isMiddleRowCompleted 2
+push pointer 0
+push argument 1
+call Board.isRightColCompleted 2
+or
+if-goto IF_TRUE12
+goto IF_FALSE12
+label IF_TRUE12
+push argument 1
+pop this 14
+label IF_FALSE12
+label IF_FALSE11
+push argument 2
+push constant 6
+eq
+if-goto IF_TRUE13
+goto IF_FALSE13
+label IF_TRUE13
+push pointer 0
+push argument 1
+call Board.isBottomRowCompleted 2
+push pointer 0
+push argument 1
+call Board.isLeftColCompleted 2
+or
+push pointer 0
+push argument 1
+call Board.isLeftBottomCrossCompleted 2
+or
+if-goto IF_TRUE14
+goto IF_FALSE14
+label IF_TRUE14
+push argument 1
+pop this 14
+label IF_FALSE14
+label IF_FALSE13
+push argument 2
+push constant 7
+eq
+if-goto IF_TRUE15
+goto IF_FALSE15
+label IF_TRUE15
+push pointer 0
+push argument 1
+call Board.isBottomRowCompleted 2
+push pointer 0
+push argument 1
+call Board.isMiddleColCompleted 2
+or
+if-goto IF_TRUE16
+goto IF_FALSE16
+label IF_TRUE16
+push argument 1
+pop this 14
+label IF_FALSE16
+label IF_FALSE15
+push argument 2
+push constant 8
+eq
+if-goto IF_TRUE17
+goto IF_FALSE17
+label IF_TRUE17
+push pointer 0
+push argument 1
+call Board.isBottomRowCompleted 2
+push pointer 0
+push argument 1
+call Board.isRightColCompleted 2
+or
+push pointer 0
+push argument 1
+call Board.isRightBottomCrossCompleted 2
+or
+if-goto IF_TRUE18
+goto IF_FALSE18
+label IF_TRUE18
+push argument 1
+pop this 14
+label IF_FALSE18
+label IF_FALSE17
+push constant 0
+return
+function Board.isOver 1
+push argument 0
+pop pointer 0
+push constant 0
+pop local 0
+label WHILE_EXP0
+push local 0
+push constant 9
+lt
+not
+if-goto WHILE_END0
+push local 0
+push this 1
+add
+pop pointer 1
+push that 0
+push constant 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+return
+label IF_FALSE0
+push local 0
+push constant 1
+add
+pop local 0
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+not
+return
+function Board.isTopRowCompleted 0
+push argument 0
+pop pointer 0
+push constant 0
+push this 1
+add
+pop pointer 1
+push that 0
+push argument 1
+eq
+push constant 1
+push this 1
+add
+pop pointer 1
+push that 0
+and
+push argument 1
+eq
+push constant 2
+push this 1
+add
+pop pointer 1
+push that 0
+and
+push argument 1
+eq
+return
+function Board.isMiddleRowCompleted 0
+push argument 0
+pop pointer 0
+push constant 3
+push this 1
+add
+pop pointer 1
+push that 0
+push argument 1
+eq
+push constant 4
+push this 1
+add
+pop pointer 1
+push that 0
+and
+push argument 1
+eq
+push constant 5
+push this 1
+add
+pop pointer 1
+push that 0
+and
+push argument 1
+eq
+return
+function Board.isBottomRowCompleted 0
+push argument 0
+pop pointer 0
+push constant 6
+push this 1
+add
+pop pointer 1
+push that 0
+push argument 1
+eq
+push constant 7
+push this 1
+add
+pop pointer 1
+push that 0
+and
+push argument 1
+eq
+push constant 8
+push this 1
+add
+pop pointer 1
+push that 0
+and
+push argument 1
+eq
+return
+function Board.isLeftColCompleted 0
+push argument 0
+pop pointer 0
+push constant 0
+push this 1
+add
+pop pointer 1
+push that 0
+push argument 1
+eq
+push constant 3
+push this 1
+add
+pop pointer 1
+push that 0
+and
+push argument 1
+eq
+push constant 6
+push this 1
+add
+pop pointer 1
+push that 0
+and
+push argument 1
+eq
+return
+function Board.isMiddleColCompleted 0
+push argument 0
+pop pointer 0
+push constant 1
+push this 1
+add
+pop pointer 1
+push that 0
+push argument 1
+eq
+push constant 4
+push this 1
+add
+pop pointer 1
+push that 0
+and
+push argument 1
+eq
+push constant 7
+push this 1
+add
+pop pointer 1
+push that 0
+and
+push argument 1
+eq
+return
+function Board.isRightColCompleted 0
+push argument 0
+pop pointer 0
+push constant 2
+push this 1
+add
+pop pointer 1
+push that 0
+push argument 1
+eq
+push constant 5
+push this 1
+add
+pop pointer 1
+push that 0
+and
+push argument 1
+eq
+push constant 8
+push this 1
+add
+pop pointer 1
+push that 0
+and
+push argument 1
+eq
+return
+function Board.isRightBottomCrossCompleted 0
+push argument 0
+pop pointer 0
+push constant 0
+push this 1
+add
+pop pointer 1
+push that 0
+push argument 1
+eq
+push constant 4
+push this 1
+add
+pop pointer 1
+push that 0
+and
+push argument 1
+eq
+push constant 8
+push this 1
+add
+pop pointer 1
+push that 0
+and
+push argument 1
+eq
+return
+function Board.isLeftBottomCrossCompleted 0
+push argument 0
+pop pointer 0
+push constant 2
+push this 1
+add
+pop pointer 1
+push that 0
+push argument 1
+eq
+push constant 4
+push this 1
+add
+pop pointer 1
+push that 0
+and
+push argument 1
+eq
+push constant 6
+push this 1
+add
+pop pointer 1
+push that 0
+and
+push argument 1
+eq
+return
+function Board.initializeHistoy 2
+push argument 0
+pop pointer 0
+push constant 9
+call Array.new 1
+pop local 0
+push constant 0
+pop local 1
+label WHILE_EXP0
+push local 1
+push constant 9
+lt
+not
+if-goto WHILE_END0
+push local 1
+push local 0
+add
+push constant 0
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push local 1
+push constant 1
+add
+pop local 1
+goto WHILE_EXP0
+label WHILE_END0
+push local 0
+return
