@@ -2,15 +2,13 @@ class Board {
   field boolean isFinished;
   field Array history;
   field int secondRow, thirdRow, fourthRow, fifthRow, seventhRow, eigthRow, ninthRow, tenthRow, twelfthRow, thirteethRow, fourteethRow, fifteethRow, endStatus;
-  // それぞれのセルが固有値を持っていてそれを加算,減算していけば意外とサクッと行けそう
-  // 1, 2, 4 ...
-  // 0: not over, 1: player 1 won, 2: player 2 won, 3: even;
+  // endStatus => 0: not over, 1: player 1 won, 2: player 2 won, 3: even;
 
   constructor Board new() {
     var int base;
     let base = -31711;
 
-    let history = initializeHistoy(); // 0 -> blank, 1 -> p1, 2 -> p2
+    let history = initializeHistoy(); // 0 -> blank, 1 -> player1, 2 -> player2
     let secondRow = base;
     let thirdRow = base;
     let fourthRow = base;
@@ -55,9 +53,9 @@ class Board {
     return endStatus;
   }
 
-  // return false if the cell is already occupied
+  // return false if the cell is already occupied or out of the rage 0 - 8
   method boolean playFirst(int cellNumber) {
-    if (~(history[cellNumber] = 0)){
+    if (isInvalidCell(cellNumber)){
       return false;
     }
 
@@ -67,9 +65,9 @@ class Board {
     return true;
   }
 
-  // return false if the cell is already occupied
+  // return false if the cell is already occupied or out of the rage 0 - 8
   method boolean playSecond(int cellNumber) {
-    if (~(history[cellNumber] = 0)){
+    if (isInvalidCell(cellNumber)){
       return false;
     }
 
@@ -77,6 +75,14 @@ class Board {
     let history[cellNumber] = 2;
     let endStatus = judge(2, cellNumber);
     return true;
+  }
+
+  method boolean isInvalidCell(int cellNumber){
+    if (~(history[cellNumber] = 0) | cellNumber < 1 | 8 < cellNumber ){
+      return true;
+    }
+
+    return false;
   }
 
   method void setOne(int cellNumber) {

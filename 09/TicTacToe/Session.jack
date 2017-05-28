@@ -1,14 +1,14 @@
 class Session {
   field Player player1;
   field Player player2;
-  field Game currentGame;
-  field int gameIdx;
-  field Array prevGames;
+  field Array games;
+  field int currentGameIdx;
   field boolean isContinue;
 
   constructor Session new(){
     var String userName1;
     var String userName2;
+    var Game newGame;
 
     do Output.printString("Welcome to TicTacToe!");
     do Output.println();
@@ -18,31 +18,31 @@ class Session {
 
     let player1 = Player.new(1, userName1);
     let player2 = Player.new(2, userName2);
-    let currentGame  = Game.new(player1, player2, Board.new());
 
-    let prevGames = Array.new(10);
-    let gameIdx = 0;
-    let prevGames[gameIdx] = currentGame;
+    let newGame  = Game.new(player1, player2, Board.new());
+    let games = Array.new(100);
+    let currentGameIdx = 0;
+    let games[currentGameIdx] = newGame;
+
     let isContinue = true;
 
     return this;
   }
 
   method void start() {
-    var Board newBoard;
     var String continue;
+    var Board newBoard;
+    var Game newGame;
 
-    do currentGame.play();
+    do currentGame().play();
 
     let continue = Keyboard.readLine("Do you want to start a new game?(y/n): ");
 
     if (continue = "y"){
-      let gameIdx = gameIdx + 1;
-      // This might not work since currentGame will reffer to the new game but we'll see.
-      let prevGames[gameIdx] = currentGame;
-
       let newBoard = Board.new();
-      let currentGame = Game.new(player1, player1, newBoard);
+      let newGame = Game.new(player1, player1, newBoard);
+      let currentGameIdx = currentGameIdx + 1;
+      let games[currentGameIdx] = newGame;
       do start();
     } else {
       let isContinue = false;
@@ -51,6 +51,10 @@ class Session {
     }
 
     return;
+  }
+
+  method Game currentGame(){
+    return games[newGameIdx];
   }
 
   method boolean getIsContinue(){

@@ -15,7 +15,7 @@ class Game {
     var int move2;
 
     do board.draw();
-    
+
     while(board.getEndStatus() = 0) {
       do board.draw();
 
