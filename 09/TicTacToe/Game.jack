@@ -20,7 +20,7 @@ class Game {
       do board.draw();
 
       let move1 = Keyboard.readInt("Please type first user's move(0-8): ");
-      while(~(board.playFirst(move1))) {
+      while(~(board.play(p1.getPlayerId,move1))) {
         do Output.printString("Invalid move");
         do Output.println();
         let move1 = Keyboard.readInt("Please type first user's move(0-8) again: ");
@@ -34,13 +34,40 @@ class Game {
 
       let move2 = Keyboard.readInt("Please type second user's move(0-8): ");
 
-      while(~(board.playSecond(move2))) {
+      while(~(board.play((p2.getPlayerId, move2))) {
         do Output.printString("Invalid move");
         do Output.println();
         let move2 = Keyboard.readInt("Please type second user's move(0-8) again: ");
       }
 
       do board.draw();
+    }
+
+    return;
+  }
+
+  method void setResult(){
+    if(board.getEndStatus() = 3) {
+      do Output.printString("Game result: The game was even.");
+      do Output.println();
+    }
+
+    if(board.getEndStatus() = 2) {
+      do Output.printString("Game result: Plyer ");
+      do Output.printString(player2.getName());
+      do Output.printString(" won.");
+      do Output.println();
+
+      do player2.incrementWin();
+    }
+
+    if(board.getEndStatus() = 1) {
+      do Output.printString("Game result: Player ");
+      do Output.printString(player1.getName());
+      do Output.printString(" won.");
+      do Output.println();
+
+      do player1.incrementWin();
     }
 
     return;

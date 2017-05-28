@@ -151,14 +151,9 @@ return
 function Board.playFirst 0
 push argument 0
 pop pointer 0
+push pointer 0
 push argument 1
-push this 1
-add
-pop pointer 1
-push that 0
-push constant 0
-eq
-not
+call Board.isInvalidCell 2
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
@@ -188,14 +183,9 @@ return
 function Board.playSecond 0
 push argument 0
 pop pointer 0
+push pointer 0
 push argument 1
-push this 1
-add
-pop pointer 1
-push that 0
-push constant 0
-eq
-not
+call Board.isInvalidCell 2
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
@@ -221,6 +211,34 @@ call Board.judge 3
 pop this 14
 push constant 0
 not
+return
+function Board.isInvalidCell 0
+push argument 0
+pop pointer 0
+push argument 1
+push this 1
+add
+pop pointer 1
+push that 0
+push constant 0
+eq
+not
+push argument 1
+or
+push constant 1
+lt
+push constant 8
+or
+push argument 1
+lt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+not
+return
+label IF_FALSE0
+push constant 0
 return
 function Board.setOne 0
 push argument 0
@@ -577,9 +595,6 @@ return
 function Board.judge 0
 push argument 0
 pop pointer 0
-push pointer 0
-call Board.printHistory 1
-pop temp 0
 push pointer 0
 call Board.isOver 1
 if-goto IF_TRUE0
@@ -1128,30 +1143,4 @@ pop local 1
 goto WHILE_EXP0
 label WHILE_END0
 push local 0
-return
-function Board.printHistory 1
-push argument 0
-pop pointer 0
-push constant 0
-pop local 0
-label WHILE_EXP0
-push local 0
-push constant 9
-lt
-not
-if-goto WHILE_END0
-push local 0
-push this 1
-add
-pop pointer 1
-push that 0
-call Output.printInt 1
-pop temp 0
-push local 0
-push constant 1
-add
-pop local 0
-goto WHILE_EXP0
-label WHILE_END0
-push constant 0
 return

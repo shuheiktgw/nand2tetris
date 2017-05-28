@@ -54,31 +54,24 @@ class Board {
   }
 
   // return false if the cell is already occupied or out of the rage 0 - 8
-  method boolean playFirst(int cellNumber) {
+  method boolean play(int playerIdx, int cellNumber) {
     if (isInvalidCell(cellNumber)){
       return false;
     }
 
-    do setOne(cellNumber);
-    let history[cellNumber] = 1;
-    let endStatus = judge(1, cellNumber);
-    return true;
-  }
-
-  // return false if the cell is already occupied or out of the rage 0 - 8
-  method boolean playSecond(int cellNumber) {
-    if (isInvalidCell(cellNumber)){
-      return false;
+    if(playerIdx = 1){
+      do setOne(cellNumber);
+    }else{
+      do setTwo(cellNumber);
     }
 
-    do setTwo(cellNumber);
-    let history[cellNumber] = 2;
-    let endStatus = judge(2, cellNumber);
+    let history[cellNumber] = playerIdx;
+    let endStatus = judge(playerIdx, cellNumber);
     return true;
   }
 
   method boolean isInvalidCell(int cellNumber){
-    if (~(history[cellNumber] = 0) | cellNumber < 1 | 8 < cellNumber ){
+    if (~(history[cellNumber] = 0) | cellNumber < 0 | 8 < cellNumber ){
       return true;
     }
 
