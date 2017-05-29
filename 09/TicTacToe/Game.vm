@@ -240,6 +240,9 @@ not
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
+push pointer 0
+call Game.setResult 1
+pop temp 0
 push constant 0
 return
 label IF_FALSE0
@@ -455,6 +458,9 @@ call Board.draw 1
 pop temp 0
 goto WHILE_EXP0
 label WHILE_END0
+push pointer 0
+call Game.setResult 1
+pop temp 0
 push constant 0
 return
 function Game.setResult 0
@@ -585,7 +591,8 @@ push constant 32
 call String.appendChar 2
 call Output.printString 1
 pop temp 0
-call player2.getName 0
+push this 1
+call Player.getName 1
 call Output.printString 1
 pop temp 0
 push constant 5
@@ -604,7 +611,11 @@ call Output.printString 1
 pop temp 0
 call Output.println 0
 pop temp 0
-call player2.incrementWin 0
+push this 1
+call Player.incrementWin 1
+pop temp 0
+push this 0
+call Player.incrementLose 1
 pop temp 0
 label IF_FALSE1
 push this 2
@@ -658,7 +669,8 @@ push constant 32
 call String.appendChar 2
 call Output.printString 1
 pop temp 0
-call player1.getName 0
+push this 0
+call Player.getName 1
 call Output.printString 1
 pop temp 0
 push constant 5
@@ -677,7 +689,11 @@ call Output.printString 1
 pop temp 0
 call Output.println 0
 pop temp 0
-call player1.incrementWin 0
+push this 0
+call Player.incrementWin 1
+pop temp 0
+push this 1
+call Player.incrementLose 1
 pop temp 0
 label IF_FALSE2
 push constant 0

@@ -8,7 +8,6 @@ class Main {
       do session.start();
     }
 
-    do Output.printString("Ending!!!!!!!");
     return;
   }
 }

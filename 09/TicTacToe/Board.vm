@@ -225,7 +225,7 @@ eq
 not
 push argument 1
 or
-push constant 1
+push constant 0
 lt
 push constant 8
 or

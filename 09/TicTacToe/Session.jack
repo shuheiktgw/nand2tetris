@@ -10,6 +10,7 @@ class Session {
     var String userName2;
     var Game newGame;
 
+    do Output.moveCursor(2, 0);
     do Output.printString("Welcome to TicTacToe!");
     do Output.println();
 
@@ -30,7 +31,7 @@ class Session {
   }
 
   method void start() {
-    var String continue;
+    var int continue;
     var Board newBoard;
     var Game newGame;
     var Game cg;
@@ -38,18 +39,25 @@ class Session {
     let cg = currentGame();
     do cg.play();
 
-    let continue = Keyboard.readLine("Do you want to start a new game?(y/n): ");
+    let continue = Keyboard.readInt("Do you want to start a new game?(1: yes): ");
 
-    if (continue = "y"){
+    if (continue = 1){
       let newBoard = Board.new();
-      let newGame = Game.new(player1, player1, newBoard);
+      let newGame = Game.new(player1, player2, newBoard);
       let currentGameIdx = currentGameIdx + 1;
       let games[currentGameIdx] = newGame;
+      do Screen.clearScreen();
+      do Output.moveCursor(2, 0);
       do start();
     } else {
       let isContinue = false;
-      do Output.printString("Ending session!!!!!!!!!!!!");
+      do Screen.clearScreen();
+      do Output.moveCursor(0, 0);
+
+      do Output.printString("Game is over.");
       do Output.println();
+      do player1.printGameCount();
+      do player2.printGameCount();
     }
 
     return;
